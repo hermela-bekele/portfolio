@@ -13,8 +13,8 @@ export default function Footer() {
   return (
     <footer
       style={{
-        borderTop: "1px solid rgba(255, 255, 255, 0.08)",
-        background: "#05070c",
+        borderTop: "1px solid var(--border-subtle)",
+        background: "var(--bg-footer)",
         paddingTop: "3.5rem",
         paddingBottom: "3rem",
         position: "relative",
@@ -44,8 +44,8 @@ export default function Footer() {
             >
               Hermela Bekele
             </div>
-            <p style={{ fontSize: "0.875rem", color: "var(--text-muted)", maxWidth: "360px" }}>
-              Full-Stack Software Engineer passionate about architecting scalable, resilient web platforms and cloud systems.
+            <p style={{ fontSize: "0.875rem", color: "var(--text-secondary)", maxWidth: "380px", lineHeight: 1.6 }}>
+              Software Engineer | Full-Stack &amp; Mobile Developer dedicated to building scalable web applications, enterprise ERPs, and AI-enabled products.
             </p>
           </div>
 
@@ -96,7 +96,7 @@ export default function Footer() {
         <div
           style={{
             paddingTop: "1.75rem",
-            borderTop: "1px solid rgba(255, 255, 255, 0.05)",
+            borderTop: "1px solid var(--border-subtle)",
             display: "flex",
             flexWrap: "wrap",
             alignItems: "center",

@@ -1,8 +1,8 @@
 "use client";
 
 import React, { useState } from "react";
-import { experienceData, ExperienceItem } from "@/data/portfolioData";
-import { Briefcase, GraduationCap, Calendar, MapPin, Sparkles, CheckCircle2 } from "lucide-react";
+import { experienceData, certificationsData, ExperienceItem } from "@/data/portfolioData";
+import { Briefcase, GraduationCap, Calendar, MapPin, Sparkles, CheckCircle2, Award } from "lucide-react";
 
 export default function Experience() {
   const [filterType, setFilterType] = useState<"all" | "work" | "education">("all");
@@ -25,14 +25,14 @@ export default function Experience() {
             Experience &amp; <span className="gradient-text">Education</span>
           </h2>
           <p className="section-subtitle">
-            A track record of engineering leadership, scalable distributed systems design, and continuous technical growth.
+            A track record of full-stack engineering delivery, enterprise ERP solutions, and continuous technical growth.
           </p>
 
           {/* Type Filter Buttons */}
           <div
             style={{
               display: "inline-flex",
-              background: "rgba(255, 255, 255, 0.04)",
+              background: "var(--bg-pill)",
               padding: "4px",
               borderRadius: "var(--radius-full)",
               border: "1px solid var(--border-subtle)",
@@ -129,8 +129,8 @@ export default function Experience() {
                     width: "16px",
                     height: "16px",
                     borderRadius: "50%",
-                    background: item.current ? "var(--accent-cyan)" : "#161b2e",
-                    border: "3px solid #08090e",
+                    background: item.current ? "var(--accent-cyan)" : "var(--bg-card-solid)",
+                    border: "3px solid var(--bg-primary)",
                     boxShadow: item.current
                       ? "0 0 12px #00f2fe"
                       : "0 0 8px rgba(168, 85, 247, 0.5)",
@@ -209,9 +209,9 @@ export default function Experience() {
                           gap: "0.4rem",
                           fontSize: "0.8125rem",
                           fontFamily: "var(--font-mono)",
-                          background: item.current ? "rgba(0, 242, 254, 0.12)" : "rgba(255, 255, 255, 0.05)",
+                          background: item.current ? "rgba(0, 242, 254, 0.12)" : "var(--bg-pill)",
                           color: item.current ? "var(--accent-cyan)" : "var(--text-secondary)",
-                          border: item.current ? "1px solid rgba(0, 242, 254, 0.3)" : "1px solid rgba(255, 255, 255, 0.08)",
+                          border: item.current ? "1px solid rgba(0, 242, 254, 0.3)" : "1px solid var(--border-subtle)",
                           padding: "0.25rem 0.75rem",
                           borderRadius: "var(--radius-full)"
                         }}
@@ -274,6 +274,122 @@ export default function Experience() {
                       </span>
                     ))}
                   </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Certifications Showcase */}
+        <div style={{ marginTop: "5rem", maxWidth: "980px", margin: "5rem auto 0 auto" }}>
+          <div style={{ textAlign: "center", marginBottom: "2.5rem" }}>
+            <div
+              style={{
+                display: "inline-flex",
+                alignItems: "center",
+                gap: "0.45rem",
+                padding: "0.35rem 0.95rem",
+                borderRadius: "var(--radius-full)",
+                background: "rgba(168, 85, 247, 0.1)",
+                border: "1px solid rgba(168, 85, 247, 0.25)",
+                color: "var(--accent-purple)",
+                fontSize: "0.8rem",
+                fontWeight: 600,
+                marginBottom: "0.75rem"
+              }}
+            >
+              <Award size={14} />
+              <span>Verified Qualifications</span>
+            </div>
+            <h3
+              style={{
+                fontSize: "1.85rem",
+                fontWeight: 700,
+                color: "var(--text-primary)"
+              }}
+            >
+              Professional <span className="gradient-text">Certifications</span>
+            </h3>
+            <p style={{ color: "var(--text-secondary)", fontSize: "0.95rem", marginTop: "0.5rem" }}>
+              Continuous professional learning and industry-recognized certifications across modern full-stack development and AI.
+            </p>
+          </div>
+
+          <div
+            style={{
+              display: "grid",
+              gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))",
+              gap: "1.25rem"
+            }}
+          >
+            {certificationsData.map((cert) => (
+              <div
+                key={cert.id}
+                className="glass-card"
+                style={{
+                  padding: "1.5rem",
+                  borderRadius: "18px",
+                  display: "flex",
+                  flexDirection: "column",
+                  justifyContent: "space-between",
+                  transition: "all 0.25s ease",
+                  border: "1px solid var(--border-subtle)"
+                }}
+              >
+                <div>
+                  <div
+                    style={{
+                      width: "42px",
+                      height: "42px",
+                      borderRadius: "12px",
+                      background: "rgba(0, 242, 254, 0.1)",
+                      border: "1px solid rgba(0, 242, 254, 0.25)",
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      color: "var(--accent-cyan)",
+                      marginBottom: "1rem"
+                    }}
+                  >
+                    <Award size={22} />
+                  </div>
+                  <h4
+                    style={{
+                      fontSize: "1.0625rem",
+                      fontWeight: 700,
+                      color: "var(--text-primary)",
+                      marginBottom: "0.35rem",
+                      lineHeight: 1.35
+                    }}
+                  >
+                    {cert.title}
+                  </h4>
+                  <div
+                    style={{
+                      fontSize: "0.875rem",
+                      fontWeight: 600,
+                      color: "var(--accent-purple)",
+                      marginBottom: "0.75rem"
+                    }}
+                  >
+                    {cert.issuer}
+                  </div>
+                </div>
+
+                <div
+                  style={{
+                    display: "inline-flex",
+                    alignItems: "center",
+                    gap: "0.35rem",
+                    fontSize: "0.75rem",
+                    fontFamily: "var(--font-mono)",
+                    color: "var(--text-muted)",
+                    paddingTop: "0.75rem",
+                    borderTop: "1px solid var(--border-subtle)"
+                  }}
+                >
+                  <Calendar size={12} />
+                  <span>{cert.date}</span>
                 </div>
               </div>
             ))}

@@ -3,19 +3,22 @@ import "./globals.css";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://hermela-bekele.github.io"),
-  title: "Hermela Bekele | Full-Stack Software Engineer",
+  title: "Hermela Bekele | Software Engineer — Full-Stack & Mobile Developer",
   description:
-    "Portfolio of Hermela Bekele — Full-Stack Software Engineer crafting resilient cloud architectures, real-time distributed platforms, and high-performance web applications.",
+    "Portfolio of Hermela Bekele — Software Engineer with experience building full-stack web and mobile applications with React, Next.js, TypeScript, Node.js, NestJS, and PostgreSQL.",
   keywords: [
     "Hermela Bekele",
-    "Full-Stack Engineer",
+    "Software Engineer",
+    "Full-Stack Developer",
+    "Mobile Developer",
+    "React Native",
     "Next.js Developer",
-    "React Specialist",
-    "Node.js Microservices",
+    "NestJS Developer",
     "TypeScript",
-    "Distributed Systems",
-    "Cloud Observability",
-    "Software Portfolio"
+    "Node.js",
+    "PostgreSQL",
+    "Addis Ababa Ethiopia",
+    "Software Engineer Portfolio"
   ],
   authors: [{ name: "Hermela Bekele" }],
   creator: "Hermela Bekele",
@@ -23,24 +26,24 @@ export const metadata: Metadata = {
     type: "website",
     locale: "en_US",
     url: "https://hermela-bekele.github.io/portfolio",
-    title: "Hermela Bekele | Full-Stack Software Engineer",
+    title: "Hermela Bekele | Software Engineer — Full-Stack & Mobile Developer",
     description:
-      "Crafting resilient cloud architectures, real-time distributed platforms, and high-performance web applications.",
+      "Software Engineer building full-stack web and mobile applications with React, Next.js, TypeScript, Node.js, NestJS, and PostgreSQL.",
     siteName: "Hermela Bekele Portfolio",
     images: [
       {
         url: "/images/hermela.jpg",
         width: 1200,
         height: 1200,
-        alt: "Hermela Bekele — Full-Stack Software Engineer"
+        alt: "Hermela Bekele — Software Engineer"
       }
     ]
   },
   twitter: {
     card: "summary_large_image",
-    title: "Hermela Bekele | Full-Stack Software Engineer",
+    title: "Hermela Bekele | Software Engineer — Full-Stack & Mobile Developer",
     description:
-      "Crafting resilient cloud architectures, real-time distributed platforms, and high-performance web applications.",
+      "Software Engineer building full-stack web and mobile applications with React, Next.js, TypeScript, Node.js, NestJS, and PostgreSQL.",
     images: ["/images/hermela.jpg"]
   },
   icons: {
@@ -54,7 +57,23 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
+      <head>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              (function() {
+                try {
+                  var saved = localStorage.getItem('portfolio-theme');
+                  var pref = window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+                  var theme = saved || pref;
+                  document.documentElement.setAttribute('data-theme', theme);
+                } catch(e) {}
+              })();
+            `
+          }}
+        />
+      </head>
       <body id="top">
         {/* Background Ambient Cosmic Orbs */}
         <div className="ambient-bg" aria-hidden="true">

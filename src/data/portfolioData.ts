@@ -6,10 +6,12 @@ export interface Project {
   longDescription: string;
   image: string;
   tags: string[];
-  category: "Full-Stack" | "Cloud & DevOps" | "Fintech & Web3";
+  category: "Full-Stack" | "Enterprise & ERP" | "Mobile & AI";
   featured: boolean;
-  demoUrl: string;
-  githubUrl: string;
+  demoUrl?: string;
+  githubUrl?: string;
+  isPrivateRepo: boolean;
+  demoType: "live" | "case_study" | "request";
   highlights: string[];
   metrics: { label: string; value: string }[];
 }
@@ -26,6 +28,15 @@ export interface ExperienceItem {
   technologies: string[];
 }
 
+export interface CertificationItem {
+  id: string;
+  title: string;
+  issuer: string;
+  date: string;
+  credentialUrl?: string;
+  icon?: string;
+}
+
 export interface SkillCategory {
   title: string;
   description: string;
@@ -34,140 +45,249 @@ export interface SkillCategory {
 
 export const personalInfo = {
   name: "Hermela Bekele",
-  title: "Full-Stack Software Engineer",
-  tagline: "Architecting scalable cloud systems and crafted, high-performance web experiences.",
-  bio: "I'm a full-stack engineer passionate about building resilient, production-ready distributed applications and fluid, accessible user interfaces. With expertise spanning modern React/Next.js architectures, high-throughput Node.js microservices, and database engineering, I turn complex requirements into elegant, high-impact digital products.",
-  location: "Addis Ababa, Ethiopia / Remote",
-  email: "hermela.bekele.dev@gmail.com",
+  title: "Software Engineer | Full-Stack & Mobile Developer",
+  tagline: "Building scalable web & mobile systems, enterprise ERP solutions, and AI-enabled digital products.",
+  bio: "Software Engineer with a BSc in Software Engineering and professional experience building full-stack web and mobile applications with React, Next.js, TypeScript, Node.js, NestJS, and PostgreSQL. Experienced in delivering ERP, supply chain, and inventory systems, integrating RESTful APIs, and collaborating in agile, cross-functional teams with a passion for AI-enabled products and requirements engineering.",
+  location: "Addis Ababa, Ethiopia",
+  email: "hermelabekeleabebe@gmail.com",
+  phone: "+251 975 064 109",
   github: "https://github.com/hermela-bekele",
   linkedin: "https://linkedin.com/in/hermela-bekele",
-  status: "Open to High-Impact Full-Stack & Engineering Roles",
+  portfolioShowcase: "https://hermelabekele.my.canva.site/brown-vintage-watercolor-creative-portfolio-presentation",
+  status: "Available for Full-Time & High-Impact Engineering Roles",
   avatar: "/images/hermela.jpg",
   stats: [
-    { label: "Years of Experience", value: "4+" },
-    { label: "Production Apps Built", value: "20+" },
-    { label: "API Requests Served Daily", value: "10M+" },
-    { label: "Average Test Coverage", value: "95%" }
+    { label: "Professional Experience", value: "1+ Year" },
+    { label: "GitHub Repositories", value: "30+" },
+    { label: "ERP & Enterprise Modules", value: "8+" },
+    { label: "Industry Certifications", value: "4" }
   ]
 };
 
 export const projectsData: Project[] = [
   {
-    id: "cloudpulse",
-    title: "CloudPulse",
-    tagline: "Autonomous Cloud Observability & Telemetry Platform",
-    description: "A distributed monitoring engine with real-time latency heatmaps, Kubernetes cluster health nodes, and automated anomaly detection.",
-    longDescription: "CloudPulse ingests millions of telemetry events per second across multi-region microservice deployments. Built with Next.js App Router, streaming WebSockets, ClickHouse for high-throughput time-series analytics, and custom canvas-based heatmaps that render 60fps graphs seamlessly.",
-    image: "/images/project-cloudpulse.jpg",
-    tags: ["Next.js 16", "TypeScript", "Node.js", "ClickHouse", "WebSockets", "Docker", "Tailored CSS"],
-    category: "Cloud & DevOps",
-    featured: true,
-    demoUrl: "https://cloudpulse-demo.vercel.app",
-    githubUrl: "https://github.com/hermela-bekele/cloudpulse",
-    highlights: [
-      "Sub-50ms latency metrics streaming using binary WebSocket protocol",
-      "Dynamic cluster map rendering over 500+ container nodes concurrently",
-      "Automated incident alert dispatch with webhook and Slack integrations"
-    ],
-    metrics: [
-      { label: "Event Throughput", value: "120k evt/s" },
-      { label: "P99 Response", value: "42ms" },
-      { label: "Telemetry Accuracy", value: "99.98%" }
-    ]
-  },
-  {
-    id: "devsync",
-    title: "DevSync",
-    tagline: "Real-time Collaborative Engineering Workspace",
-    description: "Multiplayer code editor, integrated Kanban board, and live team execution terminal with conflict-free CRDT synchronization.",
-    longDescription: "DevSync brings distributed engineering teams together with real-time pair programming, live terminal sessions, and automated Kanban sprint tracking. Powered by Yjs CRDTs, Monaco Editor, WebRTC peer fallback, and an event-driven Node.js backend.",
-    image: "/images/project-devsync.jpg",
-    tags: ["React 19", "Next.js", "TypeScript", "Yjs CRDT", "Monaco Editor", "PostgreSQL", "Redis"],
+    id: "smartrecruit",
+    title: "SmartRecruit",
+    tagline: "Intelligent Applicant Tracking & Recruitment Dashboard",
+    description: "An applicant tracking dashboard for HR professionals to monitor candidate application progress through recruitment stages with automated decision notifications.",
+    longDescription: "SmartRecruit is a full-featured recruitment tracking platform designed for modern HR departments. Built with React on the frontend and NestJS with PostgreSQL and TypeORM on the backend, it delivers visual candidate kanban pipelines, interview status monitoring, candidate evaluation workflows, and automated email notifications for rapid acceptance and rejection dispatch.",
+    image: "/images/project-smartrecruit.jpg",
+    tags: ["React", "NestJS", "PostgreSQL", "TypeORM", "TypeScript", "REST APIs", "Node.js"],
     category: "Full-Stack",
     featured: true,
-    demoUrl: "https://devsync-workspace.vercel.app",
-    githubUrl: "https://github.com/hermela-bekele/devsync",
+    isPrivateRepo: true,
+    demoType: "case_study",
+    demoUrl: "",
+    githubUrl: "",
     highlights: [
-      "Zero-conflict multi-user concurrent typing using state vectors & Yjs",
-      "Integrated virtual terminal with sandboxed container execution",
-      "Fine-grained role-based access control (RBAC) and team presence indicators"
+      "Built an applicant tracking dashboard for HR professionals to monitor application progress through the recruitment process",
+      "Implemented email notifications for acceptance and rejection decisions within one week",
+      "Engineered robust schema and relational persistence layer using NestJS, PostgreSQL, and TypeORM"
     ],
     metrics: [
-      { label: "Sync Latency", value: "<15ms" },
-      { label: "Active Team Nodes", value: "1,500+" },
-      { label: "Daily PR Commits", value: "8,000+" }
+      { label: "Notification Turnaround", value: "<1 Week" },
+      { label: "Backend Core", value: "NestJS & TypeORM" },
+      { label: "Architecture", value: "Modular APIs" }
     ]
   },
   {
-    id: "finflow",
-    title: "FinFlow",
-    tagline: "High-Performance Financial Ledger & Settlement Engine",
-    description: "Enterprise treasury dashboard supporting multi-currency conversion, real-time transaction ticker, and immutable audit trails.",
-    longDescription: "FinFlow handles double-entry multi-currency accounting with zero rounding drift and sub-second settlement verification. Features live currency ticker feeds, automated ledger audits, and an interactive risk matrix for enterprise treasury management.",
-    image: "/images/project-finflow.jpg",
-    tags: ["Next.js", "TypeScript", "Express", "PostgreSQL", "Redis Cache", "Financial APIs", "Microservices"],
-    category: "Fintech & Web3",
+    id: "scm-system",
+    title: "Supply Chain Management (SCM)",
+    tagline: "Enterprise Procurement, Sourcing & SOA Reconciliation Engine",
+    description: "Full-stack enterprise supply chain management platform handling sourcing, procurement approvals, supplier payables, and SOA financial statement reconciliation.",
+    longDescription: "Engineered at IE Networks Solution to support business operations and improve system efficiency. Built frontend and backend features for procurement, sourcing, multi-tiered approvals, payables, supplier management, and automated Statement of Accounts (SOA) processing. Developed responsive interfaces, integrated APIs, handled database operations, and supported stakeholders.",
+    image: "/images/project-scm.jpg",
+    tags: ["Laravel", "PHP", "SQL", "JavaScript", "REST APIs", "Enterprise ERP", "Git"],
+    category: "Enterprise & ERP",
     featured: true,
-    demoUrl: "https://finflow-ledger.vercel.app",
-    githubUrl: "https://github.com/hermela-bekele/finflow",
+    isPrivateRepo: true,
+    demoType: "case_study",
+    demoUrl: "",
+    githubUrl: "",
     highlights: [
-      "ACID-compliant double-entry ledger architecture with idempotency keys",
-      "Real-time FX currency conversion with rate caching & failover feeds",
-      "Exportable regulatory compliance logs and cryptographic hash verification"
+      "Built frontend and backend features for procurement, sourcing, approvals, payables, supplier management, and statement of accounts (SOA) processing",
+      "Developed responsive interfaces, integrated APIs, handled database operations, and improved system workflows",
+      "Debugged, tested, and optimized application performance while supporting users and stakeholders"
     ],
     metrics: [
-      { label: "Processed Volume", value: "$42M+" },
-      { label: "Settlement Speed", value: "Instant" },
-      { label: "System Uptime", value: "99.99%" }
+      { label: "System Focus", value: "Enterprise ERP" },
+      { label: "Core Subsystems", value: "Procurement & SOA" },
+      { label: "Performance", value: "High-Volume SQL" }
+    ]
+  },
+  {
+    id: "prime-eduai",
+    title: "PRIME-EduAI",
+    tagline: "AI-Enabled Education ERP & Academic Intelligence Platform",
+    description: "Full-stack AI-enabled ERP system for educational institutions, streamlining academic planning, student assessments, and automated administrative operations.",
+    longDescription: "Developed for Prime Integrated Services, PRIME-EduAI integrates modern frontend and backend architectures with artificial intelligence. The platform powers core school ERP modules, automated grade analytics, teacher assistance workflows, and database interactions designed for high reliability and scalability.",
+    image: "/images/project-prime-eduai.jpg",
+    tags: ["TypeScript", "React", "Node.js", "AI Integration", "PostgreSQL", "REST APIs"],
+    category: "Full-Stack",
+    featured: true,
+    isPrivateRepo: true,
+    demoType: "case_study",
+    demoUrl: "",
+    githubUrl: "",
+    highlights: [
+      "Developed frontend and backend features for an AI-enabled education ERP system",
+      "Built and integrated APIs and database operations to support core ERP modules",
+      "Architected modular TypeScript components for classroom scheduling and performance tracking"
+    ],
+    metrics: [
+      { label: "Architecture", value: "AI-Augmented ERP" },
+      { label: "Frontend/Backend", value: "Full-Stack TypeScript" },
+      { label: "Delivery", value: "Agile Sprints" }
+    ]
+  },
+  {
+    id: "educonnect",
+    title: "EduConnect",
+    tagline: "Adaptive Mobile Learning Platform Powered by Machine Learning",
+    description: "Cross-platform mobile application using machine learning models to tailor computer science materials and adaptive practice problems to individual student performance.",
+    longDescription: "EduConnect represents Hermela's senior software engineering capstone. It utilizes machine learning algorithms to personalize computer science curriculum pathways based on learner speed, quiz accuracy, and concept mastery. Built with React Native for cross-platform mobile experiences, Firebase for backend real-time data, and Python for the machine learning recommendation pipeline.",
+    image: "/images/project-educonnect.jpg",
+    tags: ["React Native", "Firebase", "Python", "Machine Learning", "Mobile App"],
+    category: "Mobile & AI",
+    featured: true,
+    isPrivateRepo: true,
+    demoType: "case_study",
+    demoUrl: "",
+    githubUrl: "",
+    highlights: [
+      "Developed a mobile learning app that uses machine learning to tailor computer science materials to each learner's performance",
+      "Designed fluid mobile user experience with responsive interactive components in React Native",
+      "Integrated Firebase authentication, real-time database, and cloud services"
+    ],
+    metrics: [
+      { label: "Target Platform", value: "iOS & Android" },
+      { label: "AI Capability", value: "Adaptive Curriculum" },
+      { label: "State Engine", value: "Firebase Realtime" }
+    ]
+  },
+  {
+    id: "fayda-digital-id",
+    title: "Fayda Digital ID Portal",
+    tagline: "National Identity Onboarding & Telebirr Mobile Integration",
+    description: "Partner onboarding portal and mobile app interfaces for Ethiopia's National ID Program (Fayda), replicating Telebirr mini-app capabilities.",
+    longDescription: "Developed during engineering internship at the National ID Program (Fayda Digital ID). Contributed to updates on the official Fayda Digital ID website as a frontend engineer, engineered the partner onboarding portal for organizational integration, and constructed mobile app user interfaces replicating Fayda features on Telebirr.",
+    image: "/images/project-fayda.jpg",
+    tags: ["React", "TypeScript", "React Native", "Telebirr Mini App", "RESTful APIs"],
+    category: "Mobile & AI",
+    featured: false,
+    isPrivateRepo: true,
+    demoType: "live",
+    demoUrl: "https://id.gov.et",
+    githubUrl: "",
+    highlights: [
+      "Developed updates to the official Fayda Digital ID website as a frontend engineer",
+      "Built user interfaces for pages of the Fayda mobile app, replicating Telebirr mini app features",
+      "Designed an onboarding portal for clients and organizations partnering with the National ID Program"
+    ],
+    metrics: [
+      { label: "Program Scope", value: "National Scale" },
+      { label: "Portal", value: "Partner Onboarding" },
+      { label: "Integration", value: "Telebirr Platform" }
+    ]
+  },
+  {
+    id: "inventory-management",
+    title: "Inventory Management System (IMS)",
+    tagline: "Real-Time Stock Tracking, Product Handling & Warehouse Operations",
+    description: "Full-stack enterprise inventory system for real-time stock tracking, automated warehouse auditing, product cataloging, and user permissions.",
+    longDescription: "Engineered at IE Networks Solution to streamline stock control and asset tracking. Built modules for inventory tracking, stock management, product handling, reporting, and user permissions. Implemented responsive UIs, integrated APIs, managed database interactions, and boosted warehouse workflow efficiency.",
+    image: "/images/project-scm.jpg",
+    tags: ["React", "Node.js", "SQL", "RESTful APIs", "Full-Stack", "Git"],
+    category: "Enterprise & ERP",
+    featured: false,
+    isPrivateRepo: true,
+    demoType: "case_study",
+    demoUrl: "",
+    githubUrl: "",
+    highlights: [
+      "Built modules for inventory tracking, stock management, product handling, reporting, and user management",
+      "Developed responsive UIs, integrated APIs, and managed database interactions",
+      "Assisted with performance optimization and debugging to improve application speed and reliability"
+    ],
+    metrics: [
+      { label: "Functionality", value: "Stock & Warehousing" },
+      { label: "Database", value: "Relational SQL" },
+      { label: "Workflow", value: "Optimized Efficiency" }
+    ]
+  },
+  {
+    id: "project-management-system",
+    title: "Project Management System",
+    tagline: "Bill of Quantities (BOQ), Project Creation & Budget Handling",
+    description: "Enterprise project management platform supporting end-to-end project lifecycles, bill of quantities (BOQ) tracking, and budget execution.",
+    longDescription: "Developed at IE Networks Solution to empower project managers and engineering teams. Features project creation pipelines, bill of quantities management, budget allocation, and milestone verification. Debugged, tested, and optimized performance to ensure mission-critical modules run seamlessly.",
+    image: "/images/project-prime-eduai.jpg",
+    tags: ["Full-Stack", "React", "TypeScript", "SQL", "Budgeting & BOQ"],
+    category: "Enterprise & ERP",
+    featured: false,
+    isPrivateRepo: true,
+    demoType: "case_study",
+    demoUrl: "",
+    githubUrl: "",
+    highlights: [
+      "Developed frontend and backend functionality for project creation, bill of quantities management, and budget handling",
+      "Debugged, tested, and optimized performance; provided support to stakeholders to keep modules running smoothly",
+      "Collaborated with project managers and designers to align functionality with business requirements"
+    ],
+    metrics: [
+      { label: "Core Feature", value: "BOQ & Budgeting" },
+      { label: "Stack", value: "Full-Stack" },
+      { label: "Collaboration", value: "Cross-Functional" }
     ]
   }
 ];
 
 export const skillCategories: SkillCategory[] = [
   {
-    title: "Frontend & Web Architecture",
-    description: "Modern, reactive, accessible interfaces with silky-smooth micro-animations.",
+    title: "Frontend & Mobile Development",
+    description: "Responsive web architectures, mobile cross-platform applications, and intuitive UI components.",
     skills: [
-      { name: "React 19 / Next.js 16", level: 95, icon: "Layers" },
-      { name: "TypeScript", level: 94, icon: "Code2" },
-      { name: "Vanilla Modern CSS / Modules", level: 92, icon: "Palette" },
-      { name: "State Management (Zustand, TanStack Query)", level: 90, icon: "Cpu" },
-      { name: "WebSockets & Realtime UX", level: 88, icon: "Radio" },
-      { name: "Performance & Core Web Vitals", level: 92, icon: "Zap" }
+      { name: "React & Next.js", level: 94, icon: "Layers" },
+      { name: "React Native (Mobile)", level: 88, icon: "Cpu" },
+      { name: "TypeScript & JavaScript", level: 92, icon: "Code2" },
+      { name: "HTML5, CSS3 & Tailwind CSS", level: 90, icon: "Palette" },
+      { name: "Reusable UI Systems", level: 92, icon: "Boxes" },
+      { name: "RESTful API Integration", level: 95, icon: "Network" }
     ]
   },
   {
-    title: "Backend & Systems Design",
-    description: "Scalable APIs, resilient microservices, and distributed streaming workflows.",
+    title: "Backend & Systems Engineering",
+    description: "Scalable server architectures, enterprise API design, and modular backend services.",
     skills: [
-      { name: "Node.js & Express", level: 92, icon: "Server" },
-      { name: "RESTful & GraphQL APIs", level: 90, icon: "Network" },
-      { name: "Python / FastAPI", level: 85, icon: "Terminal" },
-      { name: "Authentication (OAuth2, JWT, Auth.js)", level: 88, icon: "Lock" },
-      { name: "Microservices Architecture", level: 86, icon: "Boxes" },
-      { name: "Message Queues (BullMQ / RabbitMQ)", level: 82, icon: "Workflow" }
+      { name: "Node.js & Express.js", level: 90, icon: "Server" },
+      { name: "NestJS (Certified)", level: 88, icon: "Boxes" },
+      { name: "Laravel & PHP", level: 85, icon: "Terminal" },
+      { name: "RESTful API Architecture", level: 92, icon: "Network" },
+      { name: "TypeORM & ORM Modeling", level: 86, icon: "Workflow" },
+      { name: "Authentication & Authorization", level: 88, icon: "Lock" }
     ]
   },
   {
-    title: "Databases & Data Stores",
-    description: "High-integrity relational schemas, fast in-memory caches, and document stores.",
+    title: "Databases & Data Management",
+    description: "Relational schema design, SQL query tuning, and cloud data synchronization.",
     skills: [
-      { name: "PostgreSQL & Prisma / Drizzle ORM", level: 90, icon: "Database" },
-      { name: "Redis In-Memory Caching", level: 88, icon: "Zap" },
-      { name: "MongoDB / NoSQL", level: 86, icon: "HardDrive" },
-      { name: "Database Schema Migrations & Indexing", level: 85, icon: "GitBranch" },
-      { name: "ClickHouse & Time-Series Data", level: 80, icon: "BarChart3" }
+      { name: "PostgreSQL", level: 90, icon: "Database" },
+      { name: "MySQL & Relational SQL", level: 88, icon: "HardDrive" },
+      { name: "Firebase & Realtime DB", level: 84, icon: "Zap" },
+      { name: "Database Migrations & Modeling", level: 86, icon: "GitBranch" },
+      { name: "Query Optimization", level: 85, icon: "BarChart3" }
     ]
   },
   {
-    title: "DevOps & Cloud Infrastructure",
-    description: "Automated delivery pipelines, containerization, and reliable production deployments.",
+    title: "Tools, AI & Project Practices",
+    description: "Agile collaboration, machine learning fundamentals, and software delivery standards.",
     skills: [
-      { name: "Docker & Container Orchestration", level: 86, icon: "Box" },
-      { name: "CI/CD (GitHub Actions)", level: 88, icon: "GitCommit" },
-      { name: "AWS (S3, ECS, Lambda, CloudFront)", level: 82, icon: "Cloud" },
-      { name: "Vercel & Edge Functions", level: 92, icon: "Globe" },
-      { name: "Monitoring & Log Telemetry", level: 84, icon: "Activity" }
+      { name: "Git & GitHub Version Control", level: 92, icon: "GitCommit" },
+      { name: "Agile / Scrum Methodologies", level: 90, icon: "Activity" },
+      { name: "Machine Learning (Python, Scikit-Learn)", level: 82, icon: "Cpu" },
+      { name: "AI-Enhanced Project Management", level: 88, icon: "Sparkles" },
+      { name: "Testing, Debugging & QA", level: 88, icon: "Zap" },
+      { name: "Requirements Gathering & Technical Docs", level: 90, icon: "Globe" }
     ]
   }
 ];
@@ -175,64 +295,110 @@ export const skillCategories: SkillCategory[] = [
 export const experienceData: ExperienceItem[] = [
   {
     id: "exp-1",
-    role: "Senior Full-Stack Engineer",
-    company: "Apex Labs & Cloud Solutions",
-    location: "Remote / Hybrid",
-    period: "2024 — Present",
+    role: "Technical Engineer",
+    company: "IE Networks Solution",
+    location: "Addis Ababa, Ethiopia",
+    period: "04/2026 — Present",
     current: true,
     type: "work",
     description: [
-      "Engineered multi-tenant SaaS dashboard in Next.js App Router and TypeScript, reducing initial load latency by 45%.",
-      "Architected real-time telemetry streaming pipeline processing over 10M records daily using Node.js and Redis Pub/Sub.",
-      "Spearheaded database optimization and indexing strategy on PostgreSQL, improving complex reporting query execution by 3.2x.",
-      "Mentored 4 junior engineers on React architecture, clean code standards, and automated end-to-end testing."
+      "Design, develop, and maintain scalable full-stack software solutions that support business operations and improve system efficiency.",
+      "Collaborate with developers, designers, project managers, and stakeholders to deliver solutions aligned with business requirements.",
+      "Contribute to system architecture, database management, API development, and deployment processes.",
+      "Monitor, troubleshoot, and resolve technical issues to maintain system reliability, performance, and security.",
+      "Take part in requirements gathering, technical documentation, testing, and software optimization.",
+      "Apply version control, code reviews, and agile workflows; identify process inefficiencies and propose technical improvements."
     ],
-    technologies: ["Next.js", "TypeScript", "React 19", "Node.js", "PostgreSQL", "Redis", "Docker"]
+    technologies: ["React", "Next.js", "TypeScript", "Node.js", "PostgreSQL", "Laravel", "REST APIs", "Git", "Agile"]
   },
   {
     id: "exp-2",
-    role: "Full-Stack Software Engineer",
-    company: "FinTech Synergy Technologies",
-    location: "Addis Ababa, Ethiopia",
-    period: "2022 — 2024",
-    current: false,
+    role: "Fullstack Developer",
+    company: "Prime Integrated Services",
+    location: "Remote (Part-Time)",
+    period: "10/2025 — Present",
+    current: true,
     type: "work",
     description: [
-      "Developed secure transaction processing microservices handling high-volume daily financial settlements.",
-      "Created reusable frontend component design system ensuring WCAG 2.1 AA accessibility compliance across all client portals.",
-      "Implemented idempotent webhook delivery engine with automatic exponential backoff retry mechanics.",
-      "Integrated automated CI/CD pipelines on GitHub Actions, cutting release deployment cycle from 2 hours to 12 minutes."
+      "Develop frontend and backend features for an AI-enabled education ERP system.",
+      "Build and integrate APIs and database operations to support core ERP modules.",
+      "Collaborate with remote cross-functional teams in agile sprints to deliver robust full-stack features."
     ],
-    technologies: ["React", "Node.js", "Express", "PostgreSQL", "REST APIs", "Jest", "GitHub Actions"]
+    technologies: ["TypeScript", "React", "Node.js", "NestJS", "AI Integration", "PostgreSQL", "REST APIs"]
   },
   {
     id: "exp-3",
-    role: "Software Engineer (Frontend Focus)",
-    company: "Novus Digital Solutions",
+    role: "Junior Frontend Developer",
+    company: "IE Networks Solution",
     location: "Addis Ababa, Ethiopia",
-    period: "2021 — 2022",
+    period: "07/2025 — 04/2026",
     current: false,
     type: "work",
     description: [
-      "Built responsive, performance-driven web interfaces for enterprise clients across healthcare and logistics.",
-      "Refactored legacy codebases to modern React hooks and modular CSS, cutting bundle sizes by 35%.",
-      "Collaborated closely with UI/UX product designers to prototype interactive web experiments and smooth animations."
+      "Developed responsive, user-friendly web applications using React, Next.js, JavaScript, and TypeScript.",
+      "Designed and implemented reusable UI components that improved development efficiency and consistency across applications.",
+      "Integrated RESTful APIs and optimized data flow between frontend and backend systems.",
+      "Contributed to backend development, database operations, and full-stack feature implementation.",
+      "Assisted with debugging, testing, and performance optimization to improve application speed, reliability, and user experience.",
+      "Collaborated with designers, backend developers, and project managers to deliver scalable solutions."
     ],
-    technologies: ["JavaScript (ES6+)", "React", "CSS3 / Sass", "REST APIs", "Git"]
+    technologies: ["React", "Next.js", "JavaScript", "TypeScript", "RESTful APIs", "UI Components", "Debugging", "Git"]
+  },
+  {
+    id: "exp-4",
+    role: "Software Engineer Intern",
+    company: "National ID Program (Fayda Digital ID)",
+    location: "Addis Ababa, Ethiopia",
+    period: "10/2024 — 01/2025",
+    current: false,
+    type: "work",
+    description: [
+      "Developed updates to the official Fayda Digital ID website as a frontend engineer.",
+      "Built user interfaces for pages of the Fayda mobile app, replicating the features of the Fayda mini app on Telebirr, under the supervision of the senior frontend team.",
+      "Designed an onboarding portal for clients and organizations partnering with the National ID Program."
+    ],
+    technologies: ["React", "TypeScript", "React Native", "Telebirr Mini App", "Mobile UI", "Portal Design"]
   },
   {
     id: "edu-1",
-    role: "B.Sc. in Computer Science & Software Engineering",
-    company: "Addis Ababa University",
+    role: "BSc in Software Engineering",
+    company: "Hilcoe School of Computer Science and Technology",
     location: "Addis Ababa, Ethiopia",
-    period: "2017 — 2021",
+    period: "01/2021 — 02/2025",
     current: false,
     type: "education",
     description: [
-      "Graduated with Distinction in Software Engineering & Algorithms.",
-      "Capstone Project: Distributed peer-to-peer file verification system with cryptographic checksums.",
-      "Active member of Tech Innovators Society and Competitive Programming Club."
+      "Graduated with a Bachelor of Science in Software Engineering.",
+      "Capstone Project: EduConnect – Adaptive Mobile Learning System utilizing Python Machine Learning algorithms for curriculum recommendation.",
+      "Completed rigorous curriculum in Software Architecture, Data Structures & Algorithms, Object-Oriented Analysis & Design, Database Engineering, and Machine Learning."
     ],
-    technologies: ["Data Structures & Algorithms", "Distributed Systems", "Database Design", "Operating Systems"]
+    technologies: ["Software Engineering", "Algorithms & Data Structures", "Database Systems", "Machine Learning", "System Design"]
+  }
+];
+
+export const certificationsData: CertificationItem[] = [
+  {
+    id: "cert-1",
+    title: "Fundamentals of NestJS",
+    issuer: "NestJS",
+    date: "June 2025"
+  },
+  {
+    id: "cert-2",
+    title: "Certified React Developer",
+    issuer: "W3Schools",
+    date: "May 2025"
+  },
+  {
+    id: "cert-3",
+    title: "AI Enhanced Project Management",
+    issuer: "10Academy",
+    date: "October 2024"
+  },
+  {
+    id: "cert-4",
+    title: "AI Career Essentials",
+    issuer: "ALX Ethiopia",
+    date: "August 2024"
   }
 ];

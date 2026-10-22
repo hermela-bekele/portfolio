@@ -55,7 +55,7 @@ export default function Skills() {
   const [selectedCategory, setSelectedCategory] = useState<number>(0);
 
   return (
-    <section id="skills" className="section-wrapper" style={{ background: "rgba(10, 13, 22, 0.4)" }}>
+    <section id="skills" className="section-wrapper" style={{ background: "var(--bg-section-alt)" }}>
       <div className="container">
         {/* Section Header */}
         <div className="section-header">
@@ -92,7 +92,7 @@ export default function Skills() {
                   borderRadius: "18px",
                   background: isSelected
                     ? "linear-gradient(135deg, rgba(0, 242, 254, 0.12), rgba(139, 92, 246, 0.08))"
-                    : "rgba(16, 21, 36, 0.6)",
+                    : "var(--bg-card)",
                   border: isSelected
                     ? "1px solid var(--accent-cyan)"
                     : "1px solid var(--border-subtle)",
@@ -132,8 +132,8 @@ export default function Skills() {
           className="glass-card"
           style={{
             padding: "2.5rem",
-            background: "rgba(13, 17, 28, 0.85)",
-            border: "1px solid rgba(255, 255, 255, 0.12)"
+            background: "var(--bg-card)",
+            border: "1px solid var(--border-medium)"
           }}
         >
           <div style={{ marginBottom: "2rem" }}>
@@ -164,8 +164,8 @@ export default function Skills() {
               <div
                 key={skill.name}
                 style={{
-                  background: "rgba(255, 255, 255, 0.03)",
-                  border: "1px solid rgba(255, 255, 255, 0.06)",
+                  background: "var(--input-bg)",
+                  border: "1px solid var(--border-subtle)",
                   borderRadius: "14px",
                   padding: "1.25rem",
                   transition: "all 0.2s ease"
@@ -210,7 +210,7 @@ export default function Skills() {
                   style={{
                     width: "100%",
                     height: "6px",
-                    background: "rgba(255, 255, 255, 0.08)",
+                    background: "var(--border-subtle)",
                     borderRadius: "999px",
                     overflow: "hidden"
                   }}

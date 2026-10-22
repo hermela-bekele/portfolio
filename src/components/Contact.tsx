@@ -10,7 +10,9 @@ import {
   MapPin, 
   Sparkles, 
   Clock,
-  ArrowRight
+  ArrowRight,
+  Phone,
+  FileDown
 } from "lucide-react";
 import { GithubIcon, LinkedinIcon } from "./Icons";
 
@@ -45,7 +47,7 @@ export default function Contact() {
   };
 
   return (
-    <section id="contact" className="section-wrapper" style={{ background: "rgba(10, 13, 22, 0.5)" }}>
+    <section id="contact" className="section-wrapper" style={{ background: "var(--bg-section-alt)" }}>
       <div className="container">
         {/* Section Header */}
         <div className="section-header">
@@ -102,8 +104,8 @@ export default function Contact() {
               {/* Email Copy Card */}
               <div
                 style={{
-                  background: "rgba(255, 255, 255, 0.03)",
-                  border: "1px solid rgba(255, 255, 255, 0.08)",
+                  background: "var(--input-bg)",
+                  border: "1px solid var(--border-subtle)",
                   borderRadius: "14px",
                   padding: "1rem 1.25rem",
                   display: "flex",
@@ -168,6 +170,17 @@ export default function Contact() {
               {/* Details List */}
               <div style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
                 <div style={{ display: "flex", alignItems: "center", gap: "0.75rem" }}>
+                  <Phone size={18} color="var(--accent-cyan)" />
+                  <a
+                    href={`tel:${personalInfo.phone.replace(/\s+/g, '')}`}
+                    style={{ fontSize: "0.9375rem", color: "var(--text-secondary)", textDecoration: "none" }}
+                    onMouseEnter={(e) => (e.currentTarget.style.color = "var(--accent-cyan)")}
+                    onMouseLeave={(e) => (e.currentTarget.style.color = "var(--text-secondary)")}
+                  >
+                    {personalInfo.phone}
+                  </a>
+                </div>
+                <div style={{ display: "flex", alignItems: "center", gap: "0.75rem" }}>
                   <MapPin size={18} color="var(--accent-purple)" />
                   <span style={{ fontSize: "0.9375rem", color: "var(--text-secondary)" }}>
                     {personalInfo.location}
@@ -182,7 +195,7 @@ export default function Contact() {
               </div>
 
               {/* Social Channels */}
-              <div style={{ paddingTop: "1rem", borderTop: "1px solid rgba(255, 255, 255, 0.08)" }}>
+              <div style={{ paddingTop: "1rem", borderTop: "1px solid var(--border-subtle)" }}>
                 <div
                   style={{
                     fontSize: "0.8125rem",
@@ -195,7 +208,7 @@ export default function Contact() {
                 >
                   Profiles &amp; Code
                 </div>
-                <div style={{ display: "flex", gap: "0.75rem" }}>
+                <div style={{ display: "flex", flexWrap: "wrap", gap: "0.75rem" }}>
                   <a
                     href={personalInfo.github}
                     target="_blank"
@@ -216,6 +229,17 @@ export default function Contact() {
                     <LinkedinIcon size={16} />
                     <span>LinkedIn</span>
                   </a>
+                  <a
+                    href="/resume.pdf"
+                    download="Hermela_Bekele_Resume.pdf"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="btn btn-secondary"
+                    style={{ padding: "0.5rem 1rem", fontSize: "0.875rem" }}
+                  >
+                    <FileDown size={16} color="var(--accent-cyan)" />
+                    <span>Download CV</span>
+                  </a>
                 </div>
               </div>
             </div>
@@ -226,7 +250,8 @@ export default function Contact() {
             className="glass-card"
             style={{
               padding: "2.25rem",
-              background: "#0d111c"
+              background: "var(--bg-card)",
+              border: "1px solid var(--border-medium)"
             }}
           >
             <h3
@@ -316,15 +341,15 @@ export default function Contact() {
                         width: "100%",
                         padding: "0.8rem 1rem",
                         borderRadius: "12px",
-                        background: "rgba(255, 255, 255, 0.04)",
-                        border: "1px solid rgba(255, 255, 255, 0.1)",
+                        background: "var(--input-bg)",
+                        border: "1px solid var(--input-border)",
                         color: "var(--text-primary)",
                         fontSize: "0.9375rem",
                         outline: "none",
                         transition: "border-color 0.2s ease"
                       }}
                       onFocus={(e) => (e.target.style.borderColor = "var(--accent-cyan)")}
-                      onBlur={(e) => (e.target.style.borderColor = "rgba(255, 255, 255, 0.1)")}
+                      onBlur={(e) => (e.target.style.borderColor = "var(--input-border)")}
                     />
                   </div>
 
@@ -352,15 +377,15 @@ export default function Contact() {
                         width: "100%",
                         padding: "0.8rem 1rem",
                         borderRadius: "12px",
-                        background: "rgba(255, 255, 255, 0.04)",
-                        border: "1px solid rgba(255, 255, 255, 0.1)",
+                        background: "var(--input-bg)",
+                        border: "1px solid var(--input-border)",
                         color: "var(--text-primary)",
                         fontSize: "0.9375rem",
                         outline: "none",
                         transition: "border-color 0.2s ease"
                       }}
                       onFocus={(e) => (e.target.style.borderColor = "var(--accent-cyan)")}
-                      onBlur={(e) => (e.target.style.borderColor = "rgba(255, 255, 255, 0.1)")}
+                      onBlur={(e) => (e.target.style.borderColor = "var(--input-border)")}
                     />
                   </div>
                 </div>
@@ -388,15 +413,15 @@ export default function Contact() {
                       width: "100%",
                       padding: "0.8rem 1rem",
                       borderRadius: "12px",
-                      background: "rgba(255, 255, 255, 0.04)",
-                      border: "1px solid rgba(255, 255, 255, 0.1)",
+                      background: "var(--input-bg)",
+                      border: "1px solid var(--input-border)",
                       color: "var(--text-primary)",
                       fontSize: "0.9375rem",
                       outline: "none",
                       transition: "border-color 0.2s ease"
                     }}
                     onFocus={(e) => (e.target.style.borderColor = "var(--accent-cyan)")}
-                    onBlur={(e) => (e.target.style.borderColor = "rgba(255, 255, 255, 0.1)")}
+                    onBlur={(e) => (e.target.style.borderColor = "var(--input-border)")}
                   />
                 </div>
 
@@ -424,8 +449,8 @@ export default function Contact() {
                       width: "100%",
                       padding: "0.8rem 1rem",
                       borderRadius: "12px",
-                      background: "rgba(255, 255, 255, 0.04)",
-                      border: "1px solid rgba(255, 255, 255, 0.1)",
+                      background: "var(--input-bg)",
+                      border: "1px solid var(--input-border)",
                       color: "var(--text-primary)",
                       fontSize: "0.9375rem",
                       outline: "none",
@@ -434,7 +459,7 @@ export default function Contact() {
                       transition: "border-color 0.2s ease"
                     }}
                     onFocus={(e) => (e.target.style.borderColor = "var(--accent-cyan)")}
-                    onBlur={(e) => (e.target.style.borderColor = "rgba(255, 255, 255, 0.1)")}
+                    onBlur={(e) => (e.target.style.borderColor = "var(--input-border)")}
                   />
                 </div>
 

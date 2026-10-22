@@ -2,7 +2,8 @@
 
 import React, { useState, useEffect } from "react";
 import { personalInfo } from "@/data/portfolioData";
-import { Menu, X, FileDown, Sparkles } from "lucide-react";
+import { Menu, X, FileDown } from "lucide-react";
+import ThemeToggle from "./ThemeToggle";
 
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -49,12 +50,12 @@ export default function Navbar() {
         width: "100%",
         transition: "all 0.3s ease",
         background: isScrolled
-          ? "rgba(8, 9, 14, 0.85)"
-          : "rgba(8, 9, 14, 0.4)",
+          ? "var(--nav-bg-scrolled)"
+          : "var(--nav-bg)",
         backdropFilter: "blur(18px)",
         WebkitBackdropFilter: "blur(18px)",
         borderBottom: isScrolled
-          ? "1px solid rgba(255, 255, 255, 0.08)"
+          ? "1px solid var(--border-subtle)"
           : "1px solid transparent"
       }}
     >
@@ -136,7 +137,7 @@ export default function Navbar() {
           style={{
             display: "flex",
             alignItems: "center",
-            gap: "1.75rem"
+            gap: "1.5rem"
           }}
           className="desktop-nav"
         >
@@ -159,9 +160,13 @@ export default function Navbar() {
             </a>
           ))}
 
+          {/* Theme Toggle Button */}
+          <ThemeToggle />
+
           {/* Resume CTA */}
           <a
             href="/resume.pdf"
+            download="Hermela_Bekele_Resume.pdf"
             target="_blank"
             rel="noopener noreferrer"
             className="btn btn-secondary"
@@ -176,34 +181,36 @@ export default function Navbar() {
             id="nav-resume-btn"
           >
             <FileDown size={15} color="var(--accent-cyan)" />
-            <span>Resume</span>
+            <span>Download CV</span>
           </a>
         </nav>
 
-        {/* Mobile Hamburger Toggle */}
-        <button
-          onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-          aria-label={mobileMenuOpen ? "Close menu" : "Open menu"}
-          className="mobile-toggle"
-          id="mobile-menu-toggle"
-          style={{
-            background: "none",
-            border: "none",
-            color: "var(--text-primary)",
-            cursor: "pointer",
-            padding: "0.5rem",
-            display: "none"
-          }}
-        >
-          {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
-        </button>
+        {/* Mobile Nav Right: Toggle + Hamburger */}
+        <div style={{ display: "none", alignItems: "center", gap: "0.75rem" }} className="mobile-actions">
+          <ThemeToggle />
+          <button
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            aria-label={mobileMenuOpen ? "Close menu" : "Open menu"}
+            className="mobile-toggle"
+            id="mobile-menu-toggle"
+            style={{
+              background: "none",
+              border: "none",
+              color: "var(--text-primary)",
+              cursor: "pointer",
+              padding: "0.4rem"
+            }}
+          >
+            {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+          </button>
+        </div>
       </div>
 
       {/* Mobile Drawer */}
       {mobileMenuOpen && (
         <div
           style={{
-            background: "rgba(13, 16, 26, 0.98)",
+            background: "var(--bg-elevated)",
             borderBottom: "1px solid var(--border-subtle)",
             backdropFilter: "blur(20px)",
             padding: "1.5rem",
@@ -222,14 +229,16 @@ export default function Navbar() {
                 fontWeight: 600,
                 color: "var(--text-primary)",
                 padding: "0.75rem 0",
-                borderBottom: "1px solid rgba(255, 255, 255, 0.05)"
+                borderBottom: "1px solid var(--border-subtle)"
               }}
             >
               {link.label}
             </a>
           ))}
+
           <a
             href="/resume.pdf"
+            download="Hermela_Bekele_Resume.pdf"
             target="_blank"
             rel="noopener noreferrer"
             className="btn btn-primary"
@@ -240,7 +249,7 @@ export default function Navbar() {
             }}
           >
             <FileDown size={16} />
-            Download Resume
+            Download CV
           </a>
         </div>
       )}
@@ -250,8 +259,8 @@ export default function Navbar() {
           .desktop-nav {
             display: none !important;
           }
-          .mobile-toggle {
-            display: block !important;
+          .mobile-actions {
+            display: flex !important;
           }
         }
       `}</style>
